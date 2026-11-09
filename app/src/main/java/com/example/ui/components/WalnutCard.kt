@@ -23,6 +23,12 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
+import android.content.Intent
+import android.net.Uri
+import androidx.compose.material.icons.filled.Image
+import androidx.compose.material.icons.filled.OpenInNew
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.Card
@@ -69,6 +75,7 @@ fun WalnutCard(
     val item = uiItem.item
     val isFullyFound = uiItem.isFullyFound
     val isMulti = item.count > 1
+    val context = LocalContext.current
 
     val cardBgColor by animateColorAsState(
         targetValue = if (isFullyFound) {
@@ -431,6 +438,32 @@ fun WalnutCard(
                                 )
                             }
                         }
+                    }
+
+                    // Official Wiki Snapshot & Guide Button
+                    Spacer(modifier = Modifier.height(10.dp))
+                    OutlinedButton(
+                        onClick = {
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(item.wikiUrl))
+                            context.startActivity(intent)
+                        },
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .testTag("view_snapshot_button_${item.id}")
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.OpenInNew,
+                            contentDescription = null,
+                            modifier = Modifier.size(16.dp),
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Text(
+                            text = "📷 View Official Wiki Snapshot & Map",
+                            style = MaterialTheme.typography.labelMedium,
+                            fontWeight = FontWeight.SemiBold
+                        )
                     }
                 }
             }

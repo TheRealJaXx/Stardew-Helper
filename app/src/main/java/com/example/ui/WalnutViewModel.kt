@@ -79,6 +79,9 @@ class WalnutViewModel(application: Application) : AndroidViewModel(application) 
     private val _showResetDialog = MutableStateFlow(false)
     val showResetDialog: StateFlow<Boolean> = _showResetDialog.asStateFlow()
 
+    private val _showMapDialog = MutableStateFlow(false)
+    val showMapDialog: StateFlow<Boolean> = _showMapDialog.asStateFlow()
+
     val rawWalnuts: StateFlow<List<WalnutUiItem>> = repository.walnutsWithProgressFlow
         .stateIn(
             scope = viewModelScope,
@@ -231,5 +234,9 @@ class WalnutViewModel(application: Application) : AndroidViewModel(application) 
 
     fun setResetDialogVisible(visible: Boolean) {
         _showResetDialog.value = visible
+    }
+
+    fun setMapDialogVisible(visible: Boolean) {
+        _showMapDialog.value = visible
     }
 }

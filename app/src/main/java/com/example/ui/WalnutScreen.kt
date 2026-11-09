@@ -52,6 +52,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.model.WalnutDatabase
 import com.example.ui.components.FilterBar
+import com.example.ui.components.IslandMapDialog
 import com.example.ui.components.LeoParrotSheet
 import com.example.ui.components.ProgressBanner
 import com.example.ui.components.RecountNutsDialog
@@ -82,6 +83,7 @@ fun WalnutScreen(
     val showParrotSheet by viewModel.showParrotSheet.collectAsState()
     val showRecountDialog by viewModel.showRecountDialog.collectAsState()
     val showResetDialog by viewModel.showResetDialog.collectAsState()
+    val showMapDialog by viewModel.showMapDialog.collectAsState()
 
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
@@ -145,7 +147,8 @@ fun WalnutScreen(
                         milestones = viewModel.milestones,
                         onOpenParrotSheet = { viewModel.setParrotSheetVisible(true) },
                         onOpenRecountDialog = { viewModel.setRecountDialogVisible(true) },
-                        onOpenResetDialog = { viewModel.setResetDialogVisible(true) }
+                        onOpenResetDialog = { viewModel.setResetDialogVisible(true) },
+                        onOpenMapDialog = { viewModel.setMapDialogVisible(true) }
                     )
                 }
 
@@ -332,6 +335,13 @@ fun WalnutScreen(
                     Text("Cancel")
                 }
             }
+        )
+    }
+
+    // Ginger Island Map Dialog
+    if (showMapDialog) {
+        IslandMapDialog(
+            onDismiss = { viewModel.setMapDialogVisible(false) }
         )
     }
 }

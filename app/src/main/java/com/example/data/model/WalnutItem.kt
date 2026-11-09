@@ -34,7 +34,18 @@ data class WalnutItem(
     val parrotHint: String?,
     val requirements: List<String> = emptyList(),
     val isUnhinted: Boolean = false
-)
+) {
+    val wikiUrl: String get() = when (region) {
+        WalnutRegion.EAST -> "https://stardewvalleywiki.com/Golden_Walnut#Island_East"
+        WalnutRegion.NORTH -> "https://stardewvalleywiki.com/Golden_Walnut#Island_North"
+        WalnutRegion.WEST -> "https://stardewvalleywiki.com/Golden_Walnut#Island_West"
+        WalnutRegion.SOUTH -> "https://stardewvalleywiki.com/Golden_Walnut#Island_South"
+        WalnutRegion.VOLCANO -> "https://stardewvalleywiki.com/Golden_Walnut#Volcano_Dungeon"
+        WalnutRegion.GENERAL -> "https://stardewvalleywiki.com/Golden_Walnut"
+    }
+
+    val ignUrl: String get() = "https://www.ign.com/wikis/stardew-valley/All_Golden_Walnuts"
+}
 
 object WalnutDatabase {
     val ALL_WALNUTS: List<WalnutItem> = listOf(

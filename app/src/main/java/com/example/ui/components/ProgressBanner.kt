@@ -55,6 +55,7 @@ fun ProgressBanner(
     onOpenParrotSheet: () -> Unit,
     onOpenRecountDialog: () -> Unit,
     onOpenResetDialog: () -> Unit,
+    onOpenMapDialog: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val totalAvailable = WalnutDatabase.TOTAL_WALNUTS_COUNT // 130
@@ -274,6 +275,14 @@ fun ProgressBanner(
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(text = "Recount / Help")
+                }
+
+                OutlinedButton(
+                    onClick = onOpenMapDialog,
+                    shape = RoundedCornerShape(10.dp),
+                    modifier = Modifier.testTag("island_map_button")
+                ) {
+                    Text(text = "🗺️ Map", fontWeight = FontWeight.SemiBold)
                 }
 
                 OutlinedButton(
