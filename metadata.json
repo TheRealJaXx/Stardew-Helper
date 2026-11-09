@@ -1,0 +1,6 @@
+{
+  "name": "Stardew Helper",
+  "description": "Ginger Island Golden Walnuts tracker, checklist, and complete location guide for Stardew Valley.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
